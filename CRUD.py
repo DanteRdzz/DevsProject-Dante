@@ -118,12 +118,6 @@ elif user_response == 2:
         except ValueError as err:
             print(f"Error. ID no válido. {err}")
 elif user_response == 3:
-<<<<<<< HEAD
-    pass
-elif user_response == 4:
-    pass
-=======
     print("LOGICA DE ACTUALIZAR PRODUCTO...")
 elif user_response == 4:
     print("LOGICA DE ELIMINAR PRODUCTO...")
->>>>>>> branch_dante
