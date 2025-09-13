@@ -42,12 +42,11 @@ if user_response == 1:
                     print("4. Galletas.")
                     print("5. Papas.")
                     print("6. Dulces.")
-
                     try:
                         categoria = int(input("Seleccione una categoria (0 para cancelar): "))
                         if categoria == 0:
                             print("Cancelado, regresando al inicio...")
-                            continue # type: ignore
+                            
                         if categoria not in [1, 2, 3, 4, 5, 6]:
                             raise ValueError("Categoría no válida.")
 
@@ -118,6 +117,25 @@ elif user_response == 2:
         except ValueError as err:
             print(f"Error. ID no válido. {err}")
 elif user_response == 3:
-    print("LOGICA DE ACTUALIZAR PRODUCTO...")
+    while True:
+        try:
+            id_product = int(input("Ingresa el ID del producto: "))
+            break
+        except ValueError as err:
+            print(f"Error. Ingrese un dato numerico. Intente de nuevo.")
+    db_connection = connect_to_database()
+    if db_connection:
+        cursor = db_connection.cursor()
+        try:
+            cursor.execute("SELECT * FROM product WHERE id_product = %s", (id_product,))
+            product = cursor.fetchall()
+            if product:
+                for row in product:
+                    print(row)  
+            else:
+                print("Error. No se encontró ningún producto. Intente de nuevo")
+        except Exception as e:
+            print("Error en la consulta:", e)
+            print("LOGICA DE ACTUALIZAR PRODUCTO...")
 elif user_response == 4:
     print("LOGICA DE ELIMINAR PRODUCTO...")
